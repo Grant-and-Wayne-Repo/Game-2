@@ -6,6 +6,7 @@ public class TriggerLightning : MonoBehaviour {
 	private LineRenderer LR;
 	private Transform [] lPads;
 	public int count;
+	public int lives;
 
 	void Start () {
 		lPads = new Transform[20];
@@ -47,6 +48,17 @@ public class TriggerLightning : MonoBehaviour {
 		else if(other.gameObject.tag == "XPad")
 		{
 				other.gameObject.GetComponent<Explode>().Xplode = true;
+		}
+		else if(other.gameObject.tag == "Enemy")
+		{
+				if(lives > 0)
+				{
+					lives--;
+				}
+				else 
+				{
+					Debug.Log ("Game End");
+				}
 		}
 	}
 }
