@@ -7,13 +7,18 @@ public class TriggerLightning : MonoBehaviour {
 	private Transform [] lPads;
 	public int count;
 	public int lives;
-
+	public bool killer;//true if invincible false otherwise
+	public int KInterval;//invincibility timer interval
+	
+	private int killTime;
 	void Start () {
 		lPads = new Transform[20];
 		LR = new LineRenderer();
 		
 		LR = this.gameObject.AddComponent<LineRenderer>();
 		count = 0;
+		killer = false;
+		killTime = KInterval;
 	}
 	
 	void OnTriggerEnter (Collider other) {
@@ -49,7 +54,11 @@ public class TriggerLightning : MonoBehaviour {
 		{
 				other.gameObject.GetComponent<Explode>().Xplode = true;
 		}
-		else if(other.gameObject.tag == "Enemy")
+		else if(other.gameObject.tag == "KPad")
+		{
+			killer = true;
+		}
+		else if(other.gameObject.tag == "Enemy" && killer != true)
 		{
 				if(lives > 0)
 				{
@@ -59,6 +68,26 @@ public class TriggerLightning : MonoBehaviour {
 				{
 					Debug.Log ("Game End");
 				}
+		}
+		else if(other.gameObject.tag == "Enemy" && killer == true)
+		{
+			Debug.Log ("Killa");
+			Destroy(other.gameObject);
+		}
+	}
+	void Update()
+	{
+		if(killer == true)
+		{
+			if(killTime > 0 )
+			{
+				killTime--;
+			}
+			else if(killTime == 0)
+			{
+				killTime = KInterval;
+				killer = false;
+			}
 		}
 	}
 }
