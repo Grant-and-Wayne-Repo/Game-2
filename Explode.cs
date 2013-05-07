@@ -16,7 +16,7 @@ public class Explode : MonoBehaviour {
 		{
 			Debug.Log ("BOOM");
 			var xclone = Instantiate(exPrefab, this.transform.position, Quaternion.identity);
-			Xplode = false;
+			Destroy (gameObject);
 		}
 	}
 }
