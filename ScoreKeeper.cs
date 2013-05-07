@@ -4,7 +4,7 @@ using System.Collections;
 public class ScoreKeeper : MonoBehaviour {
 	
 	public Rect scoreLabelRect = new Rect(10,10, 200, 50);
-	private int Score;
+	static public int Score;
 	
 	void Start () {
 		Score = 0;
