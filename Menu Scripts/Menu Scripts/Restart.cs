@@ -9,15 +9,12 @@ public class Restart : MonoBehaviour {
 	void Start () 
 	{
 		controller = new Controller();
-	
 		OnConnect(controller);
 	}
 	void OnConnect (Controller controller)
 	{
         controller.EnableGesture (Gesture.GestureType.TYPECIRCLE);
-        //controller.EnableGesture (Gesture.GestureType.TYPEKEYTAP);
         controller.EnableGesture (Gesture.GestureType.TYPESCREENTAP);
-        //controller.EnableGesture (Gesture.GestureType.TYPESWIPE);
 	}
 
 	// Update is called once per frame
@@ -33,12 +30,13 @@ public class Restart : MonoBehaviour {
 			{
        		 	case Gesture.GestureType.TYPECIRCLE:
                 	CircleGesture circle = new CircleGesture (gesture);
-					//Application.LoadLevel(1);
+					Debug.Log ("CIRCLE");
+					Application.LoadLevel(1);
 					break;
 				case Gesture.GestureType.TYPESCREENTAP:
 					Debug.Log ("yo");
 					ScreenTapGesture screentap = new ScreenTapGesture (gesture);
-					//Application.LoadLevel(0);
+					Application.LoadLevel(0);
 					break;
 				default:
 					break;

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class EndMenu : MonoBehaviour {
-	//public GUITexture endMenu;
+
 	public Rect endMenuRect = new Rect(400, 50 , 300, 300);
 	public Rect endLabelRect = new Rect(450, 100, 100, 50);
 	public Rect endTimeRect = new Rect(450, 150, 100, 50);
@@ -16,7 +16,7 @@ public class EndMenu : MonoBehaviour {
 	
 	void Start()
 	{
-		end = false;
+		end = true;
 	}
 	void OnGUI()
 	{
@@ -25,11 +25,20 @@ public class EndMenu : MonoBehaviour {
 			GUI.skin = def;
 			GUI.Box(endMenuRect, "END");
 			GUI.Label(endLabelRect, "Score: " + ScoreKeeper.Score);
-			GUI.Label (endTimeRect, "Time: ");
+			GUI.Label (endTimeRect, "Time: " + Time.time);
 			GUI.Label (info, "Circle Gesture to replay || ScreenTap to quit to main menu");
 			GUI.Label (replayButton, replayIcon);
 			GUI.Label (quitButton, quitIcon);
 		}
 		
+	}
+	void Update()
+	{
+		if(end == true)
+		{
+			//this.gameObject.GetComponent<FingerJoystick>().enabled = false;
+			//this.gameObject.GetComponent<MenuLeap>().enabled = false;
+			this.gameObject.AddComponent<Restart>();
+		}
 	}
 }

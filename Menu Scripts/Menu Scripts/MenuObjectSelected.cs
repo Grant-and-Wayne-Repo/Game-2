@@ -18,7 +18,7 @@ public class MenuObjectSelected : MonoBehaviour {
 		this.collider.isTrigger = false;
    		yield return new WaitForSeconds(2);
 		iTween.MoveTo(this.gameObject,chosen,2f);
-    	//Application.LoadLevel("gamescene");
+    	Application.LoadLevel(1);
 	}
 	IEnumerator ChosenQuit()
 	{
@@ -26,7 +26,7 @@ public class MenuObjectSelected : MonoBehaviour {
 		this.collider.isTrigger = false;
    		yield return new WaitForSeconds(2);
 		iTween.MoveTo(this.gameObject,chosen,2f);
-		//Application.quit;
+		Application.Quit();
 	}
 	void OnTriggerEnter(Collider other)
 	{
@@ -46,7 +46,7 @@ public class MenuObjectSelected : MonoBehaviour {
 			else if(this.gameObject.tag == "Achievments")
 			{
 				iTween.ScaleTo(this.gameObject, nScale, 1.0f);
-				//StartCoroutine(ChosenQuit());
+				StartCoroutine(ChosenQuit());
 			}
 		}
 	}
